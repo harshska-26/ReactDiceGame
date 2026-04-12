@@ -1,0 +1,32 @@
+.prim-but {
+  background-color: blue;
+  color: white;
+  padding: 4px;
+  font-size: 12px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  text-align: center;
+  padding: 10px;
+}
+.sec-but {
+  background-color: red;
+  color: white;
+  padding: 4px;
+  font-size: 12px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  padding: 10px;
+}
+.transp-but {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  margin: 10px;
+  font-size: medium;
+}
+
+.transparent-button {
+  text-align: center;
+}

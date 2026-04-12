@@ -1,0 +1,10 @@
+.playerbar {
+  width: auto;
+  display: flex;
+  justify-content: space-around;
+  gap: 110px;
+}
+
+.playerBox {
+  text-align: center;
+}

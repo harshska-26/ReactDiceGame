@@ -1,0 +1,12 @@
+.score {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+}
+
+.scorebar {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}

@@ -1,0 +1,40 @@
+body {
+  height: 150%;
+  width: 100%;
+  /* display: flex; */
+  flex-direction: column;
+  align-content: center;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+.box {
+  display: flex;
+  gap: 20px;
+}
+
+.entirebox {
+  background-image: linear-gradient(
+    to right,
+    rgb(255, 255, 255) 50%,
+    rgb(197, 197, 197) 50%
+  );
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid black;
+  height: 60vh;
+  width: 70%;
+  padding: 20px;
+  margin-top: 100px;
+}
+
+.dicecontrols {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
