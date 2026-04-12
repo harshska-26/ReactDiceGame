@@ -3,7 +3,7 @@ import { BottomLine } from "./components/Bottomline.Components/Bottomline.compon
 import { TransparentButton } from "./components/Buttons.Components/Button.component";
 import { PlayerComp } from "./components/Playerline.Components/Player.component";
 import { ScoreComp } from "./components/Score.Compnents/Score.component";
-import { Topline } from "./components/Topline.Components/Topline";
+import { Topline } from "./components/Topline.Components/Topline.component";
 import { ButtonGroup } from "./layouts/ButtonGroup.layout";
 import { diceControlBtns } from "./metadata/buttons.metadata";
 
