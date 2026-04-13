@@ -4,7 +4,13 @@ export const ButtonGroup = ({ dataset }) => {
   return (
     <>
       {dataset.map((button) => {
-        return <Button type={button.type} data={button.data} />;
+        return (
+          <Button
+            onClick={button.onClick}
+            type={button.type}
+            data={button.data}
+          />
+        );
       })}
     </>
   );

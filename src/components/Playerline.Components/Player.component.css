@@ -1,10 +1,23 @@
 .playerbar {
   width: auto;
   display: flex;
-  justify-content: space-around;
-  gap: 110px;
+  justify-content: space-evenly;
+  gap: 20px;
 }
 
 .playerBox {
   text-align: center;
+}
+
+.dice-image {
+  display: block;
+  width: 80px;
+  border: 1px solid black;
+}
+
+.diceSpace {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
 }

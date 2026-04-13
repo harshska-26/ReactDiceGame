@@ -4,4 +4,13 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  gap: 10px;
+}
+
+#input {
+  width: 150px;
+  height: 30px;
+  border: 3px solid black;
+  font-weight: bold;
+  font-size: large;
 }
