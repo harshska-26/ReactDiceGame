@@ -21,11 +21,15 @@ export const PrimaryButton = ({ data }) => {
     </div>
   );
 };
-
-export const TransparentButton = ({ data, onClick}) => {
+export const TransparentButton = ({ id, funclis, data }) => {
+  const buttonfunc = () => {
+    if (funclis && funclis[id]) {
+      return funclis[id]();
+    }
+  };
   return (
     <div className="transparent-button">
-      <button className="transp-but" onClick={onClick}>
+      <button className="transp-but" onClick={buttonfunc}>
         {data}
       </button>
     </div>
