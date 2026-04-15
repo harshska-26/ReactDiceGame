@@ -3,6 +3,11 @@
   flex-direction: column;
   align-content: center;
   text-align: center;
+  color: white;
+  background-color: RGB(93, 93, 254);
+  padding: 10px;
+  border: 1px solid black;
+  box-shadow: 0 0 10px black;
 }
 
 .scorebar {
@@ -11,6 +16,6 @@
   justify-content: space-evenly;
 }
 
-h2{
+h2 {
   margin: 0;
 }

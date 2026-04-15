@@ -1,8 +1,11 @@
 import "./Player.component.css";
-export const PlayerComp = ({ name, totalscore }) => {
+
+export const PlayerComp = ({ activeplayer, name, totalscore }) => {
+  let ActiveStat = activeplayer ? "playerBox active" : "playerBox";
+
   return (
-    <div className="playerBox">
-      <h2>{name}</h2>
+    <div className={ActiveStat}>
+      <h2 className="player-name">{name}</h2>
       <h2>{totalscore}</h2>
     </div>
   );

@@ -8,72 +8,98 @@ import { ScoreComp } from "./components/Score.Compnents/Score.component";
 import { Topline } from "./components/Topline.Components/Topline.component";
 import { ButtonGroup } from "./layouts/ButtonGroup.layout";
 import { diceControlBtns } from "./metadata/buttons.metadata";
-// import { diceControlBtns } from "./metadata/buttons.metadata";
+import { EditPlyrComp, Popup } from "./layouts/Popup.layout";
 
 const App = () => {
-  const [randomNumGen, SetrandomNumGen] = useState(1);
+  const [randomNumbers, SetrandomNumbers] = useState([1, 1]);
   const [CurrentScore, SetCurrentScore] = useState(0);
-  const [playerTwoCS, setplayerTwoCS] = useState(0);
   const [activeplayer, Setactiveplayer] = useState(0);
-  const [playeroneTS, SetplayeroneTS] = useState(0);
-  const [playertwoTS, SetplayertwoTS] = useState(0);
+  const [totalScore, SettotalScore] = useState([0, 0]);
+  const [WinningScore, SetWinningScore] = useState(50);
+  const [rulesOpen, setRulesOpen] = useState(false);
+  const [epOpen, setepOpen] = useState(false);
+  const [playerNames, SetplayerNames] = useState(["PLAYER ONE", "PLAYER TWO"]);
 
   const RollDice = () => {
-    const randomNum = Math.ceil(Math.random() * 6);
-    console.log(randomNum);
-    SetrandomNumGen(randomNum);
-
-    if (randomNum === 1) {
+    const randomNumone = Math.ceil(Math.random() * 6);
+    const randomNumtwo = Math.ceil(Math.random() * 6);
+    const randomNum = randomNumone + randomNumtwo;
+    SetrandomNumbers([randomNumone, randomNumtwo]);
+    if (randomNumone === 1 || randomNumtwo === 1) {
       SetCurrentScore(0);
-      setplayerTwoCS(0);
       Setactiveplayer(activeplayer === 0 ? 1 : 0);
     } else {
-      if (activeplayer === 0) {
-        SetCurrentScore((prev) => prev + randomNum);
-      } else {
-        setplayerTwoCS((prev) => prev + randomNum);
-      }
+      SetCurrentScore((prev) => prev + randomNum);
     }
   };
 
   const HoldFunc = () => {
-    if (activeplayer === 0) {
-      SetplayeroneTS((prev) => prev + CurrentScore);
-      SetCurrentScore(0);
-      Setactiveplayer(1);
-    } else {
-      SetplayertwoTS((prev) => prev + playerTwoCS);
-      setplayerTwoCS(0);
-      Setactiveplayer(0);
-    }
+    const updatedScores = [...totalScore];
+    activeplayer === 0
+      ? (updatedScores[0] += CurrentScore)
+      : (updatedScores[1] += CurrentScore);
+    SettotalScore(updatedScores);
+    SetCurrentScore(0);
+    activeplayer === 0 ? Setactiveplayer(1) : Setactiveplayer(0);
+  };
+
+  const InputFunc = (e) => {
+    console.log(`Winning Score Set to ${e.target.value}`);
+    SetWinningScore(e.target.value);
+  };
+
+  const RulesDialogFunc = () => {
+    console.log(rulesOpen);
+    rulesOpen ? setRulesOpen(false) : setRulesOpen(true);
+  };
+
+  const Epfunc = () => {
+    console.log(rulesOpen);
+    epOpen ? setepOpen(false) : setepOpen(true);
+  };
+
+  const EditplayerFunc = (e) => {
+    SetplayerNames(e.target.value);
   };
 
   const funcObj = {
     rollDiceBtn: RollDice,
     holdBtn: HoldFunc,
+    rulesModeBtn: RulesDialogFunc,
+    editPlayerNameBtn: Epfunc,
   };
+
+  let ActiveBg = activeplayer ? "entirebox bgOne" : "entirebox bgTwo";
 
   return (
     <>
-      <div className="entirebox">
+      <div className={ActiveBg}>
         <div>
           <Topline />
         </div>
         <div className="playerbar">
-          <PlayerComp totalscore={playeroneTS} name="PLAYER ONE" />
-          <ImageComp Num={randomNumGen} />
-          <PlayerComp totalscore={playertwoTS} name="PLAYER TWO" />
+          <PlayerComp
+            activeplayer={activeplayer === 0}
+            totalscore={totalScore[0]}
+            name={playerNames[0]}
+          />
+          <ImageComp randomNums={randomNumbers} />
+          <PlayerComp
+            activeplayer={activeplayer === 1}
+            totalscore={totalScore[1]}
+            name={playerNames[1]}
+          />
         </div>
         <div className="scorebar">
-          <ScoreComp CurrentScore={CurrentScore} />
+          <ScoreComp CurrentScore={activeplayer === 0 ? CurrentScore : 0} />
           <div className="dicecontrols">
             <ButtonGroup funcObj={funcObj} dataset={diceControlBtns} />
           </div>
-          <ScoreComp CurrentScore={playerTwoCS} />
+          <ScoreComp CurrentScore={activeplayer === 1 ? CurrentScore : 0} />
         </div>
-        <div>
-          <BottomLine />
-        </div>
+        <BottomLine funcObj={funcObj} onChange={InputFunc} />
+        {rulesOpen && <Popup />}
+        {epOpen && <EditPlyrComp />}
       </div>
     </>
   );

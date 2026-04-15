@@ -1,0 +1,21 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex; /* Centering logic */
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.RulesDialog {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  z-index: 1001;
+}

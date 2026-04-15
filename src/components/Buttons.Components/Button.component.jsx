@@ -1,4 +1,6 @@
+import { Popup } from "../../layouts/Popup.layout";
 import "../Buttons.Components/Button.component.css";
+import { FaDice } from "react-icons/fa";
 
 export const Button = (props) => {
   const { type } = props;
@@ -14,14 +16,22 @@ export const Button = (props) => {
   }
 };
 
-export const PrimaryButton = ({ data }) => {
+export const PrimaryButton = ({ id, funclis, data, icon: Icon }) => {
+  const buttonfunc = () => {
+    if (funclis && funclis[id]) {
+      return funclis[id]();
+    }
+  };
   return (
     <div className="primary-button">
-      <button className="prim-but">{data}</button>
+      <button className="prim-but" onClick={buttonfunc}>
+        {Icon && <Icon className="button-icon" />}
+        {data}
+      </button>
     </div>
   );
 };
-export const TransparentButton = ({ id, funclis, data }) => {
+export const TransparentButton = ({ id, funclis, data, icon: Icon }) => {
   const buttonfunc = () => {
     if (funclis && funclis[id]) {
       return funclis[id]();
@@ -30,16 +40,25 @@ export const TransparentButton = ({ id, funclis, data }) => {
   return (
     <div className="transparent-button">
       <button className="transp-but" onClick={buttonfunc}>
+        {Icon && <Icon className="button-icon" />}
         {data}
       </button>
     </div>
   );
 };
 
-export const SecondaryButton = ({ data }) => {
+export const SecondaryButton = ({ id, data, funclis, icon: Icon }) => {
+  const buttonfunc = () => {
+    if (funclis && funclis[id]) {
+      return funclis[id]();
+    }
+  };
   return (
     <div className="secondary-button">
-      <button className="sec-but">{data}</button>
+      <button className="sec-but" onClick={buttonfunc}>
+        {Icon && <Icon className="button-icon" />}
+        {data}
+      </button>
     </div>
   );
 };

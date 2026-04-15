@@ -5,12 +5,17 @@ import {
 } from "../../metadata/buttons.metadata";
 import "./Bottomline.component.css";
 
-export const BottomLine = () => {
+export const BottomLine = ({ funcObj, onChange }) => {
   return (
     <div className="bottom-line">
-      <ButtonGroup dataset={modeControlBtns} />
-      <input id="input" type="number" placeholder="Final Score" />
-      <ButtonGroup dataset={playerControlBtns} />
+      <ButtonGroup funcObj={funcObj} dataset={modeControlBtns} />
+      <input
+        onChange={onChange}
+        id="input"
+        type="number"
+        placeholder="Final Score"
+      />
+      <ButtonGroup funcObj={funcObj} dataset={playerControlBtns} />
     </div>
   );
 };
