@@ -12,7 +12,7 @@ export const diceControlBtns = [
   },
   {
     type: "Transparent",
-    data: "HOLD",
+    data: "HOLD DICE",
     id: "holdBtn",
     icon: FaDiceFive,
   },

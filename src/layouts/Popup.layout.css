@@ -11,11 +11,42 @@
   z-index: 1000;
 }
 
-.RulesDialog {
-  background: #fff;
+.Dialog {
+  background: #000000;
+  border: 2px solid white;
+  color: white;
   padding: 20px;
   border-radius: 5px;
   width: 30%;
   position: relative;
   z-index: 1001;
+}
+
+strong {
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+#inputone,
+#inputtwo {
+  width: 60%;
+  font-size: large;
+  padding: 8px;
+  margin-top: 10px;
+  border: 3px solid white;
+  background-color: transparent;
+  color: white;
+  font-weight: 800;
+}
+
+.close-button {
+  background: black;
+  border: 3px solid white;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: 700;
 }

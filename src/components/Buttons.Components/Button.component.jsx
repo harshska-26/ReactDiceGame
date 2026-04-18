@@ -31,7 +31,13 @@ export const PrimaryButton = ({ id, funclis, data, icon: Icon }) => {
     </div>
   );
 };
-export const TransparentButton = ({ id, funclis, data, icon: Icon }) => {
+export const TransparentButton = ({
+  id,
+  funclis,
+  data,
+  icon: Icon,
+  onClick,
+}) => {
   const buttonfunc = () => {
     if (funclis && funclis[id]) {
       return funclis[id]();
@@ -39,7 +45,10 @@ export const TransparentButton = ({ id, funclis, data, icon: Icon }) => {
   };
   return (
     <div className="transparent-button">
-      <button className="transp-but" onClick={buttonfunc}>
+      <button
+        className="transp-but"
+        onClick={data === "NEW GAME" ? onClick : buttonfunc}
+      >
         {Icon && <Icon className="button-icon" />}
         {data}
       </button>

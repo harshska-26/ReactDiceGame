@@ -20,6 +20,14 @@ const App = () => {
   const [epOpen, setepOpen] = useState(false);
   const [playerNames, SetplayerNames] = useState(["PLAYER ONE", "PLAYER TWO"]);
 
+  const newGameFunc = () => {
+    SetCurrentScore(0);
+    SettotalScore([0, 0]);
+    SetplayerNames(["PLAYER ONE", "PLAYER TWO"]);
+    SetrandomNumbers([1, 1]);
+    Setactiveplayer(0);
+  };
+
   const RollDice = () => {
     const randomNumone = Math.ceil(Math.random() * 6);
     const randomNumtwo = Math.ceil(Math.random() * 6);
@@ -49,17 +57,22 @@ const App = () => {
   };
 
   const RulesDialogFunc = () => {
-    console.log(rulesOpen);
-    rulesOpen ? setRulesOpen(false) : setRulesOpen(true);
+    setRulesOpen(!rulesOpen);
+    // console.log(rulesOpen);
+    // rulesOpen ? setRulesOpen(false) : setRulesOpen(true);
   };
 
   const Epfunc = () => {
-    console.log(rulesOpen);
-    epOpen ? setepOpen(false) : setepOpen(true);
+    setepOpen(!epOpen);
   };
 
   const EditplayerFunc = (e) => {
-    SetplayerNames(e.target.value);
+    let targetedElement = e.target;
+    if (targetedElement.id === "inputone") {
+      SetplayerNames([targetedElement.value, playerNames[1]]);
+    } else {
+      SetplayerNames([playerNames[0], targetedElement.value]);
+    }
   };
 
   const funcObj = {
@@ -75,7 +88,7 @@ const App = () => {
     <>
       <div className={ActiveBg}>
         <div>
-          <Topline />
+          <Topline onClick={newGameFunc} />
         </div>
         <div className="playerbar">
           <PlayerComp
@@ -98,8 +111,8 @@ const App = () => {
           <ScoreComp CurrentScore={activeplayer === 1 ? CurrentScore : 0} />
         </div>
         <BottomLine funcObj={funcObj} onChange={InputFunc} />
-        {rulesOpen && <Popup />}
-        {epOpen && <EditPlyrComp />}
+        {rulesOpen && <Popup closeRules={RulesDialogFunc} />}
+        {epOpen && <EditPlyrComp onChange={EditplayerFunc} onClose={Epfunc} />}
       </div>
     </>
   );

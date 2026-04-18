@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
-  background-color: rgb(93, 93, 254);
+  background-color: rgba(47, 47, 254, 0.776);
   color: white;
   padding: 4px;
   font-size: 14px;
@@ -26,7 +26,7 @@
   justify-content: center;
   align-items: center;
   gap: 3px;
-  background-color: rgb(248, 73, 73);
+  background-color: #ff0d00bc;
   color: white;
   padding: 0px 20px 0px;
   font-size: 14px;
@@ -41,6 +41,7 @@
   font-style: normal;
 }
 .transp-but {
+  color: white;
   display: flex;
   flex-direction: row;
   gap: 3px;

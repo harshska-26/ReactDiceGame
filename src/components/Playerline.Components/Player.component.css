@@ -7,7 +7,7 @@
 .playerBox {
   text-align: center;
   color: white;
-  background-color: #f84949;
+  background-color: #ff0d00c5;
   padding: 10px;
   border: 1px solid black;
   box-shadow: 0 0 10px black;
@@ -30,11 +30,19 @@
   gap: 10px;
 }
 
-/* .playerBox.active::before {
-  content: "hi";
+.playerBox.active::before {
+  content: "";
+  color: red;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 0, 0, 0.61);
+  border: 1px solid transparent;
+  border-radius: 50%;
+  top: 15px;
+  left: -40px;
   position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-} */
+}
+
+.playerBox {
+  position: relative;
+}

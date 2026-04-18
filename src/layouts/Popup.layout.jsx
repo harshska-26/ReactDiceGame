@@ -1,28 +1,22 @@
-import { useState } from "react";
+import { FcRules } from "react-icons/fc";
 import "../layouts/Popup.layout.css";
 
-export const Popup = () => {
-  const [showRules, setShowRules] = useState(false);
-
-  if (showRules) {
-    return null;
-  }
-
-  const closefunc = () => {
-    console.log(showRules);
-    setShowRules(true);
-  };
-
+export const Popup = ({ closeRules }) => {
   return (
     <div className="overlay">
-      <div className="RulesDialog">
-        <h1 align="center">RULES</h1>
+      <div className="Dialog" align="center">
+        <h1 align="center">
+          <strong>
+            <FcRules />
+            RULES
+          </strong>
+        </h1>
         <h3>first Rule</h3>
         <h3>Second Rule</h3>
         <h3>Third Rule</h3>
         <h3>fourth Rule</h3>
         <h3>fifth Rule</h3>
-        <button className="close-button" onClick={closefunc}>
+        <button className="close-button" onClick={closeRules}>
           Close
         </button>
       </div>
@@ -30,17 +24,34 @@ export const Popup = () => {
   );
 };
 
-export const EditPlyrComp = () => {
+export const EditPlyrComp = ({ onChange, onClose }) => {
   return (
-    <div className="RulesDialog">
-      <h3>
-        <strong>Enter Player 1 Name:</strong>
-      </h3>
-      <input type="text" placeholder="Hii! Player1"></input>
-      <h3>
-        <strong>Enter Player 2 Name:</strong>
-      </h3>
-      <input type="text" placeholder="Hii! Player2"></input>
+    <div className="overlay">
+      <div className="Dialog" align="center">
+        <h3>
+          <b>Enter Player 1 Name:</b>
+        </h3>
+        <input
+          id="inputone"
+          type="text"
+          onChange={onChange}
+          placeholder="Hii! Player1"
+        ></input>
+        <h3>
+          <strong>Enter Player 2 Name:</strong>
+        </h3>
+        <input
+          id="inputtwo"
+          onChange={onChange}
+          type="text"
+          placeholder="Hii! Player2"
+        ></input>
+        <br />
+        <br />
+        <button className="close-button" onClick={onClose}>
+          Close
+        </button>
+      </div>
     </div>
   );
 };
