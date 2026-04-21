@@ -4,6 +4,17 @@
   border: 3px solid black;
   font-weight: bold;
   font-size: large;
-  border: 3px solid black;
+  border: 2px solid black;
   border-radius: 10px;
+  text-align: center;
+}
+
+.bottom-line {
+  display: flex;
+  gap: 20px;
+  top: 88%;
+  width: 100%;
+  position: absolute;
+  justify-content: space-evenly;
+  align-items: center;
 }

@@ -15,9 +15,9 @@ body {
   font-style: normal;
 }
 
-#root {
+.root {
   width: 100%;
-  background: url("/src/assets/DiceBG.png");
+  background-color: white(32, 32, 32, 0.968);
   background-size: cover;
   background-position: center;
   min-height: 100vh;
@@ -26,46 +26,56 @@ body {
   align-items: center;
 }
 
-.box {
+.entirebox {
   display: flex;
-  gap: 20px;
+  min-height: 700px;
+  width: 70%;
+  position: relative;
 }
 
-.entirebox {
-  gap: 90px;
-  width: 65%;
+.sideone {
+  background-color: rgba(0, 0, 0, 0.466);
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  gap: 13vh;
+  align-items: center;
+  width: 50%;
+}
+/* 
+.sidetwo {
+  background-color: rgba(0, 0, 0, 0.438);
+  display: flex;
+  flex-direction: column;
+  gap: 13vh;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
-  padding: 30px;
-}
+  width: 50%;
+} */
 
-.dicecontrols {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.bodyBG{
+  background-color: rgba(0, 0, 0, 0.733);
 }
 
 .bgOne {
-  background-image: linear-gradient(
-    to right,
-    rgba(65, 65, 65, 0.236) 50%,
-    rgba(255, 255, 255, 0.436) 50%
-  );
-}
-.bgTwo {
-  background-image: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0.43) 50%,
-    rgba(65, 65, 65, 0.341) 50%
-  );
+  background-color: rgba(106, 106, 106, 0.363);
 }
 
-.bottom-line {
-  width: 100%;
+.midbar {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 10vh;
+  flex-direction: column;
   align-items: center;
+  width: none;
+  height: none;
+  margin: 0;
+  z-index: 1001;
+}
+
+
+.dicecontrols {
+  width: 100%;
+  top: 62%;
+  position: absolute;
 }

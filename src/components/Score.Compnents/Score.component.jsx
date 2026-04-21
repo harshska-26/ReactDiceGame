@@ -5,7 +5,7 @@ export const ScoreComp = ({ CurrentScore }) => {
   return (
     <div className="score">
       <h2>CURRENT</h2>
-      <h2>{CurrentScore}</h2>
+      <p>{CurrentScore}</p>
     </div>
   );
 };

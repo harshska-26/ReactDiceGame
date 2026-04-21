@@ -1,18 +1,16 @@
-.playerbar {
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-}
-
 .playerBox {
   text-align: center;
+  width: 13vw;
   color: white;
-  background-color: #ff0d00c5;
   padding: 10px;
-  border: 1px solid black;
-  box-shadow: 0 0 10px black;
-  height: 80px;
   font-size: large;
+  line-height: 2px;
+}
+
+p{
+  font-size:400%;
+  color: RGB(206, 55, 47);
+  font-weight: 400;
 }
 
 .dice-image {
@@ -26,8 +24,10 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 140px;
   gap: 10px;
+  top: 20%;
+  width: 100%;
+  position: absolute;
 }
 
 .playerBox.active::before {
@@ -38,8 +38,8 @@
   background-color: rgba(255, 0, 0, 0.61);
   border: 1px solid transparent;
   border-radius: 50%;
-  top: 15px;
-  left: -40px;
+  top: 4px;
+  left: -10px;
   position: absolute;
 }
 

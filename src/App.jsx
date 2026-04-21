@@ -19,6 +19,8 @@ const App = () => {
   const [rulesOpen, setRulesOpen] = useState(false);
   const [epOpen, setepOpen] = useState(false);
   const [playerNames, SetplayerNames] = useState(["PLAYER ONE", "PLAYER TWO"]);
+  const [hardMode, setHardMode] = useState(false)
+  const [lastRollSix, setlastRollSix] = useState(false)
 
   const newGameFunc = () => {
     SetCurrentScore(0);
@@ -28,94 +30,140 @@ const App = () => {
     Setactiveplayer(0);
   };
 
+  const hardModeFunc = () => {
+    const updatedPlayerNames = [...playerNames]
+      SetplayerNames(updatedPlayerNames)
+    setHardMode(!hardMode)
+    newGameFunc();
+  }
+
   const RollDice = () => {
     const randomNumone = Math.ceil(Math.random() * 6);
     const randomNumtwo = Math.ceil(Math.random() * 6);
     const randomNum = randomNumone + randomNumtwo;
     SetrandomNumbers([randomNumone, randomNumtwo]);
-    if (randomNumone === 1 || randomNumtwo === 1) {
+      if (hardMode) {
+        if (randomNumone === 6 || randomNumtwo === 6) {
+          if (lastRollSix === true) {
+            SettotalScore((prev) => {
+              const newScore = [...prev];
+              newScore[activeplayer] = Math.max(0, newScore[activeplayer] - 10);
+              return newScore;
+            });
+            SetCurrentScore(0)
+            Setactiveplayer(activeplayer === 0 ? 1 : 0)
+            setlastRollSix(false);
+          } else {
+            setlastRollSix(true)
+            SetCurrentScore((prev) => prev + randomNum)
+          }
+        } else {
+          if (randomNumone === 1 || randomNumtwo === 1) {
+            SetCurrentScore(0);
+            Setactiveplayer(activeplayer === 0 ? 1 : 0);
+          }
+          else {
+            setlastRollSix(false);
+            SetCurrentScore((prev) => prev + randomNum)
+          }
+        }
+      } else {
+        if (randomNumone === 1 || randomNumtwo === 1) {
+          SetCurrentScore(0);
+          Setactiveplayer(activeplayer === 0 ? 1 : 0);
+          setlastRollSix(false);
+        } else {
+          SetCurrentScore((prev) => prev + randomNum);
+          setlastRollSix(false);
+        }
+      }
+    }
+  
+
+
+    const HoldFunc = () => {
+      const updatedScores = [...totalScore];
+      activeplayer === 0
+        ? (updatedScores[0] += CurrentScore)
+        : (updatedScores[1] += CurrentScore);
+      SettotalScore(updatedScores);
       SetCurrentScore(0);
-      Setactiveplayer(activeplayer === 0 ? 1 : 0);
-    } else {
-      SetCurrentScore((prev) => prev + randomNum);
+      activeplayer === 0 ? Setactiveplayer(1) : Setactiveplayer(0);
+    };
+
+    const InputFunc = (e) => {
+      console.log(`Winning Score Set to ${e.target.value}`);
+      SetWinningScore(e.target.value);
+    };
+
+    const RulesDialogFunc = () => {
+      setRulesOpen(!rulesOpen);
+    };
+
+    const Epfunc = () => {
+      SetplayerNames(["PLAYER ONE", "PLAYER TWO"])
+      setepOpen(!epOpen);
+    };
+
+
+    const EditplayerFunc = (e) => {
+      let targetedElement = e.target;
+      if (targetedElement.id === "inputone") {
+        SetplayerNames([targetedElement.value, playerNames[1]]);
+      } else {
+        SetplayerNames([playerNames[0], targetedElement.value]);
+      }
+    };
+
+    const epEnterFunc = () => {
+      const updatedPlayerNames = [...playerNames]
+      SetplayerNames(updatedPlayerNames)
+      setepOpen(false)
     }
-  };
 
-  const HoldFunc = () => {
-    const updatedScores = [...totalScore];
-    activeplayer === 0
-      ? (updatedScores[0] += CurrentScore)
-      : (updatedScores[1] += CurrentScore);
-    SettotalScore(updatedScores);
-    SetCurrentScore(0);
-    activeplayer === 0 ? Setactiveplayer(1) : Setactiveplayer(0);
-  };
+    const funcObj = {
+      rollDiceBtn: RollDice,
+      holdBtn: HoldFunc,
+      rulesModeBtn: RulesDialogFunc,
+      editPlayerNameBtn: Epfunc,
+      hardModeBtn: hardModeFunc,
+    };
 
-  const InputFunc = (e) => {
-    console.log(`Winning Score Set to ${e.target.value}`);
-    SetWinningScore(e.target.value);
-  };
+    let ActiveBg = activeplayer ? "sideone" : "sideone bgOne";
+    let ActiveBgtwo = activeplayer ? "sideone bgOne" : "sideone";
+    let UiChange = hardMode ? "root bodyBG" : "root";
 
-  const RulesDialogFunc = () => {
-    setRulesOpen(!rulesOpen);
-    // console.log(rulesOpen);
-    // rulesOpen ? setRulesOpen(false) : setRulesOpen(true);
-  };
 
-  const Epfunc = () => {
-    setepOpen(!epOpen);
-  };
-
-  const EditplayerFunc = (e) => {
-    let targetedElement = e.target;
-    if (targetedElement.id === "inputone") {
-      SetplayerNames([targetedElement.value, playerNames[1]]);
-    } else {
-      SetplayerNames([playerNames[0], targetedElement.value]);
-    }
-  };
-
-  const funcObj = {
-    rollDiceBtn: RollDice,
-    holdBtn: HoldFunc,
-    rulesModeBtn: RulesDialogFunc,
-    editPlayerNameBtn: Epfunc,
-  };
-
-  let ActiveBg = activeplayer ? "entirebox bgOne" : "entirebox bgTwo";
-
-  return (
-    <>
-      <div className={ActiveBg}>
-        <div>
+    return (
+      <div className={UiChange}>
+        <div className="entirebox">
+          <div className={ActiveBg}>
+            <PlayerComp
+              activeplayer={activeplayer === 0}
+              totalscore={totalScore[0]}
+              name={playerNames[0]}
+            />
+            <ScoreComp CurrentScore={activeplayer === 0 ? CurrentScore : 0} />
+          </div>
+          <div className={ActiveBgtwo}>
+            <PlayerComp
+              activeplayer={activeplayer === 1}
+              totalscore={totalScore[1]}
+              name={playerNames[1]}
+            />
+            <ScoreComp CurrentScore={activeplayer === 1 ? CurrentScore : 0} />
+          </div>
           <Topline onClick={newGameFunc} />
-        </div>
-        <div className="playerbar">
-          <PlayerComp
-            activeplayer={activeplayer === 0}
-            totalscore={totalScore[0]}
-            name={playerNames[0]}
-          />
           <ImageComp randomNums={randomNumbers} />
-          <PlayerComp
-            activeplayer={activeplayer === 1}
-            totalscore={totalScore[1]}
-            name={playerNames[1]}
-          />
-        </div>
-        <div className="scorebar">
-          <ScoreComp CurrentScore={activeplayer === 0 ? CurrentScore : 0} />
           <div className="dicecontrols">
             <ButtonGroup funcObj={funcObj} dataset={diceControlBtns} />
           </div>
-          <ScoreComp CurrentScore={activeplayer === 1 ? CurrentScore : 0} />
+          <BottomLine funcObj={funcObj} onChange={InputFunc} />
+          {rulesOpen && <Popup closeRules={RulesDialogFunc} />}
+          {epOpen && <EditPlyrComp onEnter={epEnterFunc} onChange={EditplayerFunc} onClose={Epfunc} />}
         </div>
-        <BottomLine funcObj={funcObj} onChange={InputFunc} />
-        {rulesOpen && <Popup closeRules={RulesDialogFunc} />}
-        {epOpen && <EditPlyrComp onChange={EditplayerFunc} onClose={Epfunc} />}
       </div>
-    </>
-  );
-};
+    );
+  };
 
-export default App;
+  export default App;

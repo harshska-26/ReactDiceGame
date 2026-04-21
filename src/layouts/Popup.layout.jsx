@@ -24,7 +24,7 @@ export const Popup = ({ closeRules }) => {
   );
 };
 
-export const EditPlyrComp = ({ onChange, onClose }) => {
+export const EditPlyrComp = ({ onChange, onClose, onEnter }) => {
   return (
     <div className="overlay">
       <div className="Dialog" align="center">
@@ -50,6 +50,9 @@ export const EditPlyrComp = ({ onChange, onClose }) => {
         <br />
         <button className="close-button" onClick={onClose}>
           Close
+        </button>
+        <button className="close-button" onClick={onEnter}>
+          Enter
         </button>
       </div>
     </div>

@@ -6,7 +6,7 @@ export const PlayerComp = ({ activeplayer, name, totalscore }) => {
   return (
     <div className={ActiveStat}>
       <h2 className="player-name">{name}</h2>
-      <h2>{totalscore}</h2>
+      <p>{totalscore}</p>
     </div>
   );
 };

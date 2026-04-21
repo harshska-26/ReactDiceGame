@@ -13,7 +13,7 @@ export const BottomLine = ({ funcObj, onChange }) => {
         onChange={onChange}
         id="input"
         type="number"
-        placeholder="Final Score"
+        placeholder="FINAL SCORE"
       />
       <ButtonGroup funcObj={funcObj} dataset={playerControlBtns} />
     </div>
