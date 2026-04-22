@@ -1,7 +1,25 @@
 import { FaDice, FaDiceFive, FaRegEdit } from "react-icons/fa";
 import { FcRules } from "react-icons/fc";
 import { GiAndroidMask } from "react-icons/gi";
+import { MdOutlineWifiProtectedSetup } from "react-icons/md";
 import { SiAseprite } from "react-icons/si";
+
+
+
+export const gameControlBtns = [
+  {
+    type: "Transparent",
+    data: "NEW GAME",
+    id: "newGameBtn",
+    icon: MdOutlineWifiProtectedSetup,
+  },
+  {
+    type: "Transparent",
+    data: "START GAME",
+    id: "startGameBtn",
+    icon: FaDiceFive,
+  },
+];
 
 export const diceControlBtns = [
   {

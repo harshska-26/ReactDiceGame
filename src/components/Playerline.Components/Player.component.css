@@ -15,8 +15,9 @@ p{
 
 .dice-image {
   display: block;
-  width: 70px;
+  width: 85px;
   border: 1px solid black;
+  border-radius: 10px;
 }
 
 .diceSpace {
@@ -24,8 +25,8 @@ p{
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 10px;
-  top: 20%;
+  gap: 20px;
+  top: 18%;
   width: 100%;
   position: absolute;
 }

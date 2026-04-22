@@ -12,6 +12,7 @@ import { EditPlyrComp, HardmodePopup, Popup } from "./layouts/Popup.layout";
 
 const App = () => {
   const [randomNumbers, SetrandomNumbers] = useState([1, 1]);
+  const [start, setStart] = useState(false);
   const [CurrentScore, SetCurrentScore] = useState(0);
   const [activeplayer, Setactiveplayer] = useState(0);
   const [totalScore, SettotalScore] = useState([0, 0]);
@@ -28,7 +29,12 @@ const App = () => {
     SetplayerNames(["PLAYER ONE", "PLAYER TWO"]);
     SetrandomNumbers([1, 1]);
     Setactiveplayer(0);
+    setStart(false);
   };
+
+  const startGameFunc = () => {
+    setStart(!start);
+  }
 
   const hardModeFunc = () => {
     const updatedPlayerNames = [...playerNames];
@@ -54,7 +60,7 @@ const App = () => {
         if (lastRollSix === true) {
           SettotalScore((prev) => {
             const newScore = [...prev];
-            newScore[activeplayer] = Math.max(0, newScore[activeplayer] - 10);
+            newScore[activeplayer] = Math.max(0, newScore[activeplayer] - 20);
             return newScore;
           });
           SetCurrentScore(0);
@@ -73,6 +79,7 @@ const App = () => {
         if (randomNumone === 1 || randomNumtwo === 1) {
           SetCurrentScore(0);
           Setactiveplayer(activeplayer === 0 ? 1 : 0);
+          setlastRollSix(false);
         } else {
           setlastRollSix(false);
           SetCurrentScore((prev) => prev + randomNum);
@@ -131,6 +138,8 @@ const App = () => {
   };
 
   const funcObj = {
+    newGameBtn: newGameFunc,
+    startGameBtn: startGameFunc,
     rollDiceBtn: RollDice,
     holdBtn: HoldFunc,
     rulesModeBtn: RulesDialogFunc,
@@ -162,10 +171,10 @@ const App = () => {
           />
           <ScoreComp CurrentScore={activeplayer === 1 ? CurrentScore : 0} />
         </div>
-        <Topline onClick={newGameFunc} />
-        <ImageComp randomNums={randomNumbers} />
+        <Topline funcObj={funcObj} />
+        {start && <ImageComp randomNums={randomNumbers} />}
         <div className="dicecontrols">
-          <ButtonGroup funcObj={funcObj} dataset={diceControlBtns} />
+          {start && <ButtonGroup funcObj={funcObj} dataset={diceControlBtns} />}
         </div>
         <BottomLine funcObj={funcObj} onChange={InputFunc} />
         {!hardMode && rulesOpen && <Popup closeRules={RulesDialogFunc} />}

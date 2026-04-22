@@ -11,7 +11,7 @@ export const Popup = ({ closeRules }) => {
             RULES
           </strong>
         </h1>
-        <ol>
+        <ol >
           <li>The game has 2 players,playing in rounds.</li>
           <li>
             In each turn,a player rolls a dice as many times as he whishes. Each
@@ -31,9 +31,10 @@ export const Popup = ({ closeRules }) => {
           </li>
           <li>
             you can change the predefined score of 50 in the "Set Target Score"
-            input box "GOOD LUCK BUDDY !!!"
+            input box
           </li>
         </ol>
+            <h3>"GOOD LUCK BUDDY !!!"</h3> 
         <button className="close-button" onClick={closeRules}>
           Close
         </button>
@@ -52,6 +53,8 @@ export const HardmodePopup = ({ closeRules }) => {
             RULES
           </strong>
         </h1>
+        <ol>
+
         <li>Including the rules before here are some New Rules.</li>
         <li>
           Player looses 20 points his ENTIRE score when he rolls a 6 in a row.
@@ -63,8 +66,10 @@ export const HardmodePopup = ({ closeRules }) => {
         </li>
         <li>
           Another dice is added to make the game faster to reach GLOBAL SCORE
-          and interesting.GOOD LUCK BUDDY !!!
+          and interesting.
         </li>
+        </ol>
+          <h3> GOOD LUCK BUDDY !!!</h3>
         <button className="close-button" onClick={closeRules}>
           Close
         </button>

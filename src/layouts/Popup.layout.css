@@ -51,3 +51,13 @@ strong {
   font-weight: 700;
   margin-right: 20px;
 }
+
+li{
+  font-weight: 700;
+  line-height: 35px;
+}
+
+ol{
+  text-align: left;
+}
+
