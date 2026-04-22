@@ -79,3 +79,7 @@ body {
   top: 62%;
   position: absolute;
 }
+
+.hardmode{
+  background-color: grey;
+}
