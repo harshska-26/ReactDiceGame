@@ -117,6 +117,7 @@ export const WinnerPopup = ({ winnerName, closeRules }) => {
     <div className="overlay">
       <div className="Dialog" align="center">
         <h1 align="center">{`Congratulations ${winnerName}!!!`} </h1>
+        <h1 align="center">You are the Winner!!!</h1>
         <button className="close-button" onClick={closeRules}>
           Close
         </button>

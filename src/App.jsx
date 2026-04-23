@@ -29,12 +29,10 @@ const App = () => {
   const [lastRollSix, setlastRollSix] = useState(false);
   const [win, Setwin] = useState(false);
 
-
   const newGameFunc = () => {
     SetCurrentScore(0);
     SettotalScore([0, 0]);
     SetplayerNames(["PLAYER ONE", "PLAYER TWO"]);
-
     SetrandomNumbers([1, 1]);
     Setactiveplayer(0);
     setStart(false);
@@ -47,7 +45,6 @@ const App = () => {
   const winFunc = () => {
     Setwin(true);
     setStart(false);
-    newGameFunc();
   };
 
   const hardModeFunc = () => {
@@ -71,32 +68,30 @@ const App = () => {
   };
 
   const RollDice = () => {
-  const randomNumOne = Math.ceil(Math.random() * 6);
-  const randomNumTwo = Math.ceil(Math.random() * 6);
-  const total = randomNumOne + randomNumTwo;
-  const hasSix = randomNumOne === 6 || randomNumTwo === 6;
-  const hasOne = randomNumOne === 1 || randomNumTwo === 1;
-  
-  SetrandomNumbers([randomNumOne, randomNumTwo]);
+    const randomNumOne = Math.ceil(Math.random() * 6);
+    const randomNumTwo = Math.ceil(Math.random() * 6);
+    const total = randomNumOne + randomNumTwo;
+    const hasSix = randomNumOne === 6 || randomNumTwo === 6;
+    const hasOne = randomNumOne === 1 || randomNumTwo === 1;
 
-  if (hardMode && hasSix && lastRollSix) {
-    SettotalScore((prev) => {
-      const newScore = [...prev];
-      newScore[activeplayer] = Math.max(0, newScore[activeplayer] - 20);
-      return newScore;
-    });
-    return resetTurn();
-  }
+    SetrandomNumbers([randomNumOne, randomNumTwo]);
 
-  if (hasOne) {
-    return resetTurn();
-  }
+    if (hardMode && hasSix && lastRollSix) {
+      SettotalScore((prev) => {
+        const newScore = [...prev];
+        newScore[activeplayer] = Math.max(0, newScore[activeplayer] - 20);
+        return newScore;
+      });
+      return resetTurn();
+    }
 
-  SetCurrentScore((prev) => prev + total);
-  setlastRollSix(hardMode && hasSix);
-};
+    if (hasOne) {
+      return resetTurn();
+    }
 
-
+    SetCurrentScore((prev) => prev + total);
+    setlastRollSix(hardMode && hasSix);
+  };
 
   const HoldFunc = () => {
     const updatedScores = [...totalScore];
@@ -158,6 +153,7 @@ const App = () => {
       <div className="entirebox">
         <div className={ActiveBg}>
           <PlayerComp
+            hardMode={hardMode}
             activeplayer={activeplayer === 0}
             totalscore={totalScore[0]}
             name={playerNames[0]}
@@ -166,6 +162,7 @@ const App = () => {
         </div>
         <div className={ActiveBgtwo}>
           <PlayerComp
+            hardMode={hardMode}
             activeplayer={activeplayer === 1}
             totalscore={totalScore[1]}
             name={playerNames[1]}
@@ -192,7 +189,8 @@ const App = () => {
         {win && (
           <WinnerPopup
             winnerName={playerNames[activeplayer === 0 ? 1 : 0]}
-            closeRules={() => Setwin(false)}
+            closeRules={() => {Setwin(false);
+              newGameFunc()}}
           />
         )}
       </div>
