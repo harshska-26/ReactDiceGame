@@ -31,6 +31,8 @@ export const PrimaryButton = ({ id, funclis, data, icon: Icon }) => {
     </div>
   );
 };
+
+
 export const TransparentButton = ({ id, funclis, data, icon: Icon }) => {
   const buttonfunc = () => {
     if (funclis && funclis[id]) {

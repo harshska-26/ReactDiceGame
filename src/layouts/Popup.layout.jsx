@@ -11,7 +11,7 @@ export const Popup = ({ closeRules }) => {
             RULES
           </strong>
         </h1>
-        <ol >
+        <ol>
           <li>The game has 2 players,playing in rounds.</li>
           <li>
             In each turn,a player rolls a dice as many times as he whishes. Each
@@ -34,7 +34,7 @@ export const Popup = ({ closeRules }) => {
             input box
           </li>
         </ol>
-            <h3>"GOOD LUCK BUDDY !!!"</h3> 
+        <h3>"GOOD LUCK BUDDY !!!"</h3>
         <button className="close-button" onClick={closeRules}>
           Close
         </button>
@@ -54,22 +54,21 @@ export const HardmodePopup = ({ closeRules }) => {
           </strong>
         </h1>
         <ol>
-
-        <li>Including the rules before here are some New Rules.</li>
-        <li>
-          Player looses 20 points his ENTIRE score when he rolls a 6 in a row.
-          After that, it's the next player's turn.
-        </li>
-        <li>
-          The Global score is increased to 100 points.so first player reaching
-          GLOBAL score wins the game.
-        </li>
-        <li>
-          Another dice is added to make the game faster to reach GLOBAL SCORE
-          and interesting.
-        </li>
+          <li>Including the rules before here are some New Rules.</li>
+          <li>
+            Player looses 20 points his ENTIRE score when he rolls a 6 in a row.
+            After that, it's the next player's turn.
+          </li>
+          <li>
+            The Global score is increased to 100 points.so first player reaching
+            GLOBAL score wins the game.
+          </li>
+          <li>
+            Another dice is added to make the game faster to reach GLOBAL SCORE
+            and interesting.
+          </li>
         </ol>
-          <h3> GOOD LUCK BUDDY !!!</h3>
+        <h3> GOOD LUCK BUDDY !!!</h3>
         <button className="close-button" onClick={closeRules}>
           Close
         </button>
@@ -107,6 +106,19 @@ export const EditPlyrComp = ({ onChange, onClose, onEnter }) => {
         </button>
         <button className="close-button" onClick={onEnter}>
           Enter
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export const WinnerPopup = ({ winnerName, closeRules }) => {
+  return (
+    <div className="overlay">
+      <div className="Dialog" align="center">
+        <h1 align="center">{`Congratulations ${winnerName}!!!`} </h1>
+        <button className="close-button" onClick={closeRules}>
+          Close
         </button>
       </div>
     </div>
